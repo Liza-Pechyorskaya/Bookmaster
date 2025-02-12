@@ -5,10 +5,39 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Bookmaster.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="BrowseCatalog">
+      d:DesignHeight="770" d:DesignWidth="1580"
+      Title="Просмотр каталога книг">
 
-    <Grid Background="green">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="400"/>
+            <ColumnDefinition  Width="10"/>
+            <ColumnDefinition  Width="1*"/>
+        </Grid.ColumnDefinitions>
         
+        <!--#region Панель поиска-->
+        <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.ColumnSpan="3" Source="\Resources\Images\logo.png"/>
+        </Grid>
+        <!--#endregion-->
     </Grid>
 </Page>
