@@ -23,6 +23,8 @@ namespace Bookmaster.View.Pages
         public BrowseCatalog()
         {
             InitializeComponent();
+
+            BookAuthorLv.ItemsSource = App.context.BookAuthor.ToList();
         }
     }
 }
