@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Bookmaster.AppData
 {
@@ -24,15 +25,21 @@ namespace Bookmaster.AppData
 
         public IEnumerable<Book> NextPage()
         {
-            _currentPageIndex++;
-
+            if(_currentPageIndex < TotalPages - 1) // получаем индекс последней страницы
+            {
+                _currentPageIndex++;
+            }
+           
             return CurrentPageOfBooks;
         }
 
         public IEnumerable<Book> PreviousPage()
         {
-            _currentPageIndex--;
-
+            if(_currentPageIndex > 0)
+            {
+                _currentPageIndex--;
+            }
+            
             return CurrentPageOfBooks;
         }
 
@@ -41,6 +48,11 @@ namespace Bookmaster.AppData
             _currentPageNumber = pageNumber;
 
             return CurrentPageOfBooks;
+        }
+
+        public void UpdateNavigationButtons(Button nextButton, Button previousButton)
+        {
+
         }
     }
 }
