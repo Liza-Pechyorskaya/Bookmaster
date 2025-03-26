@@ -102,7 +102,7 @@
                     
                     <TextBlock Name="TotalPagesTbl" Grid.Column="8" Text="{Binding TotalPages, StringFormat=из {0}}"/>
                     
-                    <TextBlock Name="TotalBooksTbl" Grid.Column="12" Text="{Binding ItemsCount, StringFormat=Всего книг найдено: {0}}"/>
+                    <TextBlock Name="TotalBooksTbl" Grid.Column="12" Text="{Binding BooksCount, StringFormat=Всего книг найдено: {0}}"/>
                 </Grid>
             </Grid>
                 <!-- #endregion-->
