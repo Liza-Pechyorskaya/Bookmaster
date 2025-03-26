@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bookmaster.AppData;
+using Bookmaster.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +22,51 @@ namespace Bookmaster.View.Pages
     /// </summary>
     public partial class BrowseCatalog : Page
     {
+        List<Book> _books = App.context.Book.ToList();
+
+        PaginationService _booksPagination;
+
         public BrowseCatalog()
         {
             InitializeComponent();
+        }
 
-            BookAuthorLv.ItemsSource = App.context.BookAuthor.ToList();
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SearchResultsGrid.Visibility = Visibility.Visible;
+
+            string bookTitle = SearchByBookTitleTb.Text;
+            string authorName = SearchByAuthorNameTb.Text;
+            string bookSubjects = SearchByBookSubjectsTb.Text;
+
+            if(string.IsNullOrEmpty(bookTitle) && string.IsNullOrEmpty(authorName) && string.IsNullOrEmpty(bookSubjects))
+            {
+                _booksPagination = new PaginationService(_books);
+            }
+            else
+            {
+                List<Book> booksSearchResult = _books.Where(b => b.Title.ToLower().Contains(SearchByBookTitleTb.Text.ToLower()) && b.Authors.ToLower().Contains(SearchByAuthorNameTb.Text.ToLower())).ToList();
+
+                _booksPagination = new PaginationService(booksSearchResult);
+            }
+
+            BookAuthorLv.ItemsSource = _booksPagination.CurrentPageOfBooks;
+            TotalPagesTbl.Text = _booksPagination.TotalPages.ToString();
+        }
+
+        private void PreviousBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CurrentPageTb_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
+        private void NextBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
