@@ -37,6 +37,16 @@
             </Grid.ColumnDefinitions>
 
             <Image Grid.ColumnSpan="3" Source="\Resources\Images\logo.png"/>
+            <TextBlock Grid.Row="2" Text="Название"/>
+            <TextBox Name="SearchByBookTitleTb" Grid.Row="2" Grid.Column="2"/>
+
+            <TextBlock Grid.Row="4" Text="Автор"/>
+            <TextBox Name="SearchByAuthorNameTb" Grid.Row="4" Grid.Column="2"/>
+
+            <TextBlock Grid.Row="6" Text="Жанр"/>
+            <TextBox Name="SearchByBookSubjectsTb" Grid.Row="6" Grid.Column="2"/>
+
+            <Button Name="SearchBtn" Grid.Row="8" Grid.Column="2" Content="Поиск" Click="SearchBtn_Click"/>
         </Grid>
         <!--#endregion-->
 
@@ -48,7 +58,7 @@
             </Grid.RowDefinitions>
 
             <!-- #region Результаты поиска-->
-            <Grid>
+            <Grid Name="SearchResultsGrid" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5"/>
@@ -59,11 +69,41 @@
                 <ListView Name="BookAuthorLv">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Название книги" DisplayMemberBinding="{Binding Book.Title}"/>
-                            <GridViewColumn Header="Имя автора" DisplayMemberBinding="{Binding Author.Name}"/>
+                            <GridViewColumn Header="Название книги" DisplayMemberBinding="{Binding Title}"/>
+                            <GridViewColumn Header="Имя автора" DisplayMemberBinding="{Binding Authors}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Страница"/>
+                    
+                    <Button Name="PreviousBookBtn" Grid.Column="2" Content="&lt;" Click="PreviousBookBtn_Click"/>
+                    
+                    <TextBox Name="CurrentPageTb" Grid.Column="4" HorizontalContentAlignment="Center" DataContextChanged="CurrentPageTb_DataContextChanged"/>
+                    
+                    <Button Name="NextBookBtn" Grid.Column="6" Content="&gt;" Click="NextBookBtn_Click"/>
+                    
+                    <TextBlock Name="TotalPagesTbl" Grid.Column="8" Text="{Binding TotalPages, StringFormat=из {0}}"/>
+                    
+                    <TextBlock Name="TotalBooksTbl" Grid.Column="12" Text="{Binding ItemsCount, StringFormat=Всего книг найдено: {0}}"/>
+                </Grid>
             </Grid>
                 <!-- #endregion-->
         </Grid>
