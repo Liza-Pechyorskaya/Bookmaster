@@ -52,7 +52,8 @@ namespace Bookmaster.AppData
 
         public void UpdateNavigationButtons(Button nextButton, Button previousButton)
         {
-
+            nextButton.IsEnabled = _currentPageIndex < TotalPages - 1;
+            previousButton.IsEnabled = _currentPageIndex > 0;
         }
     }
 }

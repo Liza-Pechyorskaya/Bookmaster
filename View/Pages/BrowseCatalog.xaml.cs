@@ -52,11 +52,13 @@ namespace Bookmaster.View.Pages
 
             BookAuthorLv.ItemsSource = _booksPagination.CurrentPageOfBooks;
             TotalPagesTbl.DataContext = TotalBooksTbl.DataContext = _booksPagination;
+            _booksPagination.UpdateNavigationButtons(NextBookBtn, PreviousBookBtn);
         }
 
         private void PreviousBookBtn_Click(object sender, RoutedEventArgs e)
         {
             BookAuthorLv.ItemsSource = _booksPagination.PreviousPage();
+            _booksPagination.UpdateNavigationButtons(NextBookBtn, PreviousBookBtn);
         }
 
         private void CurrentPageTb_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -67,6 +69,7 @@ namespace Bookmaster.View.Pages
         private void NextBookBtn_Click(object sender, RoutedEventArgs e)
         {
             BookAuthorLv.ItemsSource = _booksPagination.NextPage();
+            _booksPagination.UpdateNavigationButtons(NextBookBtn, PreviousBookBtn);
         }
     }
 }
